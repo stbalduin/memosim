@@ -1,0 +1,21 @@
+@startuml
+
+[*] --> init
+
+init --> init: set_initial_value()
+
+init --> pre_step
+pre_step --> pre_step: set_input_value()
+
+pre_step --> step: [step() called]
+
+
+step --> post_step: [metamodels finished\ncomputation]
+post_step --> post_step: update_output_value()
+
+post_step --> idle
+idle --> pre_step: [next input provided]
+
+
+}
+@enduml

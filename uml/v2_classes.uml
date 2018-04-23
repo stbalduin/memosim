@@ -1,0 +1,23 @@
+@startuml
+
+package memosim {
+
+    Class SurrogateModelSimulator {
+        - state
+        - input_var_names
+        - output_var_names
+        + __init__(params, init_state)
+        + step()
+    }
+ 
+    Class Metamodel {
+        - input_names
+        - output_names
+        - model
+        + step(state)
+    }
+    
+}
+
+
+@enduml

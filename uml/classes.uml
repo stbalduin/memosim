@@ -1,0 +1,100 @@
+@startuml
+
+package simulationmodel {
+    Class SurrogateModelSimulator {
+      - state   
+      - output_variables
+      - input_variables
+      - steps
+      + add_variable(Variable var)
+      - add_input_variable(InputVariable var)
+      - add_output_variable(InputVariable var)
+      + step()
+      + get_variable(String var_name)
+      + copy()
+    }
+    
+    Class Variable {
+        - name
+        + step()
+    }
+    
+    Class InputVariable {
+        - name
+        - generator
+        + step()
+    }
+    
+    Class OutputVariable {
+        - name
+        - init_val
+        - meta_model
+        + step(state)
+    }
+    
+    
+    Class Logger {
+        
+    }
+    
+    Variable <|-- InputVariable
+    Variable <|-- OutputVariable
+}
+
+package generators {
+    Class Generator {
+        next()
+        copy()
+    }
+    
+    Class ControllableValue {
+        next()
+        copy()
+    }
+    
+    Class ConstantValue {
+        next()
+        copy()
+    }
+
+    Class Series {
+        next()
+        copy()
+    }
+    
+    Class Increment {
+        next()
+        copy()
+    }
+    
+    Generator <|-- ControllableValue
+    Generator <|-- ConstantValue
+    Generator <|-- Series
+    Generator <|-- Increment
+    
+}
+
+package metamodels {
+    Class MetaModel {
+        + evaluate()
+        + copy()
+    }
+    
+    Class RegressionMetaModel {
+        + evaluate()
+        + copy()
+    }
+    
+    Class TestMetaModel {
+        + evaluate()
+        + copy()
+    }
+    
+    MetaModel <|-- RegressionMetaModel
+    MetaModel <|-- TestMetaModel
+}
+
+InputVariable -- Generator
+OutputVariable -- MetaModel
+
+@enduml

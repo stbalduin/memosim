@@ -1,0 +1,44 @@
+@startuml
+left to right direction
+
+class memosim.simulation.SurrogateModelSimulator
+
+class memosim.simulation.ModelState
+
+abstract class memosim.simulation.Mode
+
+class memosim.simulation.InitMode
+
+class memosim.simulation.PreStepMode
+
+class memosim.simulation.StepMode
+
+class memosim.simulation.PostStepMode
+
+class memosim.simulation.IdleMode
+
+class memosim.simulation.VirtualStateSimulator
+
+class memosim.simulation.MetaModelSimulator
+
+class memotrainer.metamodels.MetaModel #DDDDDD {
+}
+
+
+memosim.simulation.SurrogateModelSimulator -- memosim.simulation.ModelState: has a >
+memosim.simulation.SurrogateModelSimulator -- memosim.simulation.MetaModelSimulator: has *  >
+memosim.simulation.MetaModelSimulator <|-- memosim.simulation.SimpleMetaModelSimulator: is a <
+memosim.simulation.SimpleMetaModelSimulator -- memotrainer.metamodels.MetaModel: encapsulates a >
+
+
+memosim.simulation.ModelState -- memosim.simulation.VirtualStateSimulator: has * >
+
+memosim.simulation.ModelState -- memosim.simulation.Mode
+memosim.simulation.Mode <|- memosim.simulation.InitMode
+memosim.simulation.Mode <|- memosim.simulation.PreStepMode
+memosim.simulation.Mode <|- memosim.simulation.StepMode
+memosim.simulation.Mode <|- memosim.simulation.PostStepMode
+memosim.simulation.Mode <|- memosim.simulation.IdleMode
+
+
+@enduml

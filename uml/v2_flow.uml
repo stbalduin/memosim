@@ -1,0 +1,48 @@
+@startuml
+
+
+start
+
+: Inputs: 
+    params
+    init_vals
+    metamodel(s)/
+    note right
+        params: {'param_name' : param_val}
+        init_vals: {'var_name' : var_val}
+        metamodels: {['out_name1', 'out_name2'] : metamodel}
+    end note
+
+partition init {
+    : model.params = params]
+    
+    : model.state = update_state(params)]
+    
+    : model.state = update_state(init_vals)]
+
+    : model.metamodels = metamodels]
+}
+
+ 
+partition sim {
+
+    while (time < end_time?)
+        :model[input_var_name] = new_val|    
+        
+        partition step {
+            :new_state = copy(model.params)]
+            
+            while (for m in metamodels)
+                :new_state.update(m.step(model.state))] 
+            end while
+            
+            :model.state = new_state]
+        }
+        
+    end while
+}
+
+end
+
+
+@enduml
