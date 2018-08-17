@@ -1,8 +1,8 @@
 import numpy as np
 import mosaik_api
 
-import h5db
-import memomodel
+from memodb import h5db
+from memodb import memomodel
 
 import memosim.simulation_v2 as sim
 

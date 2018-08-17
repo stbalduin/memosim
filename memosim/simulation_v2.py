@@ -1,5 +1,5 @@
 import numpy as np
-import memomodel
+from memodb import memomodel
 
 class Sum():
     def __call__(self, attr_inputs):

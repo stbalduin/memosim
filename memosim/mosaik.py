@@ -7,8 +7,8 @@ A mosaik simulator for :class:`SurrogateSimulationModels <.SurrogateSimulationMo
 
 import mosaik_api
 
-import h5db
-import memomodel
+from memodb import h5db
+from memodb import memomodel
 
 from memosim import SurrogateModelSimulator
 
